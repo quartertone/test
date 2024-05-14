@@ -1,1 +1,72 @@
-test <b>build</b>index
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tracker colors</title>
+  <meta name="darkreader-lock" />
+
+  <!-- <link rel="stylesheet" href="vision.css" /> -->
+  <!-- <script src="settings.js"></script> -->
+</head>	
+<body>
+
+<style>
+.line {
+display:table;
+position:relative;
+font-size:14pt;
+
+input {
+font-size:14pt;
+width: 5em;
+margin-right: 0.5em;
+text-align:center;
+}
+
+}
+
+</style>
+
+<script>
+let colors = `
+C/S preop:#f77
+Laboring:#f33
+C/S postop:#7e7
+Postpartum vag:#3e3
+Antepartum:#ee0
+Demise:#98f
+Triage:#fa0
+NST:#f90
+Non-OB:#cca
+PP readmit:#a80
+`.trim().split("\n");
+for (const color of colors) {
+
+let [name,ccc] = color.split(":");
+
+let line = document.createElement("div");
+line.className = "line";
+
+let clr = document.createElement("input")
+clr.style.background = ccc;
+clr.value = ccc;
+
+clr.oninput = function() {
+this.style.background = this.value;
+}
+
+let label = document.createElement("span");
+label.innerText = name;
+
+line.append(clr,label);
+
+document.body.append(line);
+
+}
+</script>
+
+
+</body>
+</html>
