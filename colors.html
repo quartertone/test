@@ -65,12 +65,12 @@ showcolors();
 
 
 function showcolors () {
-let colors = colortext.value.trim().split("\n");
+let colors = Object.fromEntries(colortext.value.trim().split("\n").map(a => a.split(":")));
 
 output.innerHTML ="";
-for (const color of colors) {
+for (const [name,ccc] of Object.entries(colors)) {
 
-let [name,ccc] = color.split(":");
+// let [name,ccc] = color.split(":");
 
 let line = document.createElement("div");
 line.className = "line";
@@ -79,10 +79,19 @@ let clr = document.createElement("input")
 clr.style.background = CSS.supports("color",ccc)?ccc: "none";
 clr.value = ccc;
 
-clr.oninput = function() {
-this.style.background = CSS.supports("color",this.value)?this.value: "none";
-}
 
+clr.oninput = function() {
+	if (CSS.supports("color",this.value)) {
+	this.style.background = this.value;
+colors[name] = this.value;
+colortext.value ="";
+for (const [n,c] of Object.entries(colors)) {
+	colortext.value += n + ":" + c+ "\n";
+}
+	} else {
+	this.style.background = "none";
+	}
+}
 let label = document.createElement("span");
 label.innerText = name;
 
@@ -96,8 +105,19 @@ output.append(line);
 </script>
 
 <hr/>
-Palettes:
-<textarea></textarea>
+Epic-ish:
+<textarea>
+Laboring:#ff7
+C/S preop:#baf
+C/S postop:#75f
+Postpartum vag:#fb9
+Antepartum:#7ff
+Demise:#ff0
+Triage:#3e3
+NST:#7f7
+Non-OB:#cca
+PP readmit:#a80
+</textarea>
 
 Proposed:
 <textarea>
