@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tracker colors</title>
+  <meta name="darkreader-lock" />
+
+  <!-- <link rel="stylesheet" href="vision.css" /> -->
+  <!-- <script src="settings.js"></script> -->
+</head>	
+
+<style>
+.line {
+display:table;
+position:relative;
+font-size:14pt;
+
+input {
+font-size:14pt;
+width: 5em;
+margin-right: 0.5em;
+text-align:center;
+}
+
+}
+
+textarea {
+width:min(20em,80vw);
+height:min(13em,25vh);
+display:block;
+}
+
+</style>
+<body>
+
+Enter valid HTML colors to test them out.
+
+<textarea id="colors">
+C/S preop:#f77
+Laboring:#f33
+C/S postop:#7e7
+Postpartum vag:#3e3
+Antepartum:#ee0
+Demise:#98f
+Triage:#fa0
+NST:#f90
+Non-OB:#cca
+PP readmit:#a80
+</textarea>
+
+<div id="output"></div>
+
+<script>
+
+let colortext = document.querySelector("#colors");
+let output = document.querySelector("#output");
+
+showcolors();
+
+colortext.oninput = () =>{
+showcolors();
+}
+
+
+function showcolors () {
+let colors = colortext.value.trim().split("\n");
+
+output.innerHTML ="";
+for (const color of colors) {
+
+let [name,ccc] = color.split(":");
+
+let line = document.createElement("div");
+line.className = "line";
+
+let clr = document.createElement("input")
+clr.style.background = CSS.supports("color",ccc)?ccc: "none";
+clr.value = ccc;
+
+clr.oninput = function() {
+this.style.background = CSS.supports("color",this.value)?this.value: "none";
+}
+
+let label = document.createElement("span");
+label.innerText = name;
+
+line.append(clr,label);
+
+output.append(line);
+
+}
+}
+
+</script>
+
+<hr/>
+Palettes:
+<textarea></textarea>
+
+Proposed:
+<textarea>
+C/S preop:#f77
+Laboring:#f33
+C/S postop:#7e7
+Postpartum vag:#3e3
+Antepartum:#ee0
+Demise:#98f
+Triage:#fa0
+NST:#f90
+Non-OB:#cca
+PP readmit:#a80
+</textarea>
+</body>
+</html>
