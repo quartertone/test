@@ -2,8 +2,8 @@
 <style>
 :root {
   --bodybg: #333;
-  --bodyfg: var(--bs-body-color);
-  --linkcolor: var(--bs-link-color);
+  --bodyfg: #fff;
+  --linkcolor: #259;
 
   --available: #44f;
   --unavailable: #99a;
@@ -32,7 +32,7 @@ body {
   background: var(--bodybg);
   color: var(--bodyfg);
 }
-
+/*
 #sideprofile {
   position: relative;
   display: inline-flex;
@@ -75,7 +75,7 @@ body {
 a {
   color: var(--linkcolor);
 }
-
+*/
 .calfade,
 .calfade::before {
   opacity: 0.25;
@@ -100,6 +100,12 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  #navcal {
+    flex-grow: 0.85;
+  }
+}
+/* moved #nav___ out of calnav */
   #navback,
   #navcal,
   #navfwd {
@@ -107,11 +113,7 @@ a {
     z-index: 10;
     cursor: pointer;
   }
-  #navcal {
-    flex-grow: 0.85;
-  }
-}
-
+/*
 #orgpreferences {
   display: flex;
   flex-direction: row;
@@ -174,25 +176,14 @@ a {
     }
   }
 }
-
+*/
 .monthrow {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
   position: relative;
-  /*grid-template-columns: 1fr 1fr 1fr;*/
-  /* transition: all 0.5s; */
   left: 0;
-
-  /* &:has(~ #shiftview div) {
-    margin-right: 1.5em;
-  }
-
-  &:not(:has(~ #shiftview div)) {
-    left: 50%;
-    transform: translate(-50%);
-  } */
 
   .shiftrow {
     position: absolute;
@@ -217,7 +208,7 @@ a {
         opacity: 0;
       }
 
-      .shiftslot {
+      .shiftslot { /* KEEPING THIS FOR NOW */
         display: none;
       }
 
@@ -233,13 +224,10 @@ a {
 }
 
 .month {
-  /* margin-top: var(--blocksize); */
-  /* margin-left: var(--blocksize); */
   position: relative;
   display: grid;
   margin: calc(var(--blocksize) / 10);
   grid-template-columns: repeat(7, 1fr);
-  /* width: calc(var(--blocksize) * 7); */
   user-select: none;
   align-content: start;
 
@@ -301,18 +289,18 @@ a {
     margin-bottom: 0.5em;
   }
 }
-
+/*
 #blockmgr.calholder .month .day {
   opacity:1;
   &:not([data-blockid]):hover {
   background-color: var(--calhover);
 }
 }
-
+*/
 
 #shiftview {
   &:not(:has(div)) {
-    display: none;
+    display: none; /* KEEPING THIS FOR NOW */
   }
 
   position: relative;
@@ -411,7 +399,7 @@ a {
   }
 }
 
-/* myshifts */
+/* 
 #myshifts {
   >* {border:solid 1px red;}
   width: min(20em, 80%);
@@ -483,7 +471,7 @@ ul.project {
 
   
 }
-
+*/
 
 
 
@@ -513,7 +501,7 @@ ul.us_menu.horizontal.expanded > li {
   width:50%;
   margin-left:50%;
 } */
-
+/*
 footer#footer.footer {
   margin-top: 3em !important;
 }
@@ -720,7 +708,7 @@ input#showslots {
     }
   }
 }
-
+*/
 </style>
 </head>
 <body>
